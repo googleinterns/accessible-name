@@ -140,4 +140,15 @@ describe('The function for rule 2A', () => {
     const elem = document.getElementById('foo');
     expect(rule2A(elem!)).toBe('');
   });
+
+  it('obeys ignoreHiddenness', () => {
+    render(
+        html`<div aria-hidden='true' id="foo"><button>OK</button></div>`,
+        container);
+    const elem = document.getElementById('foo');
+    expect(rule2A(elem!)).toBe('');
+    const context = getDefaultContext();
+    context.inherited.ignoreHiddenness = true;
+    expect(rule2A(elem!, context)).toBe('OK');
+  });
 });

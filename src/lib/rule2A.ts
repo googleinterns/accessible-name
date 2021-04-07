@@ -71,7 +71,8 @@ function sizeToNumber(size: string): number {
  */
 function rule2ACondition(node: Node, context: Context): boolean {
   // #SPEC_ASSUMPTION (A.1) : definition of 'directly referenced'
-  return isHidden(node, context) && !context.directLabelReference;
+  return !context.inherited.ignoreHiddenness && isHidden(node, context) &&
+      !context.directLabelReference;
 }
 
 /**
