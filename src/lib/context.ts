@@ -54,6 +54,12 @@ export interface Context {
      * name computation algorithm.
      */
     rulesApplied: Set<Rule>;
+
+    /**
+     * Ignore whether a node is hidden or not - compute accessible name as if
+     * all nodes are displayed
+     */
+    ignoreHiddenness: boolean;
   };
 }
 
@@ -66,6 +72,7 @@ export function getDefaultContext(): Context {
       visitedNodes: [],
       nodesUsed: new Set<Node>(),
       rulesApplied: new Set<Rule>(),
+      ignoreHiddenness: false,
     },
   };
 }
